@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bodc6uo5hj1w7"]
+
+[ext_resource type="Script" path="res://pipe_spawner.gd" id="1_pcjcd"]
+[ext_resource type="PackedScene" uid="uid://dg7lm0ec3ivif" path="res://pipes.tscn" id="1_scm2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o33r"]
+size = Vector2(108, 288)
+
+[node name="PipeSpawner" type="Area2D"]
+script = ExtResource("1_pcjcd")
+pipe_scene = ExtResource("1_scm2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(584, 160)
+shape = SubResource("RectangleShape2D_5o33r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

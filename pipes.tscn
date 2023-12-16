@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg7lm0ec3ivif"]
+
+[ext_resource type="Texture2D" uid="uid://dh448l6gjayjq" path="res://pipe.png" id="1_ri706"]
+[ext_resource type="Script" path="res://pipes.gd" id="1_w43ta"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g818m"]
+texture = ExtResource("1_ri706")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_hewr5"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_g818m")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dma0i"]
+size = Vector2(32, 288.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yh7r"]
+size = Vector2(32, 48)
+
+[node name="Pipes" type="CharacterBody2D"]
+script = ExtResource("1_w43ta")
+
+[node name="PipeSprites" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_hewr5")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 2, 65536, 0, 2, 131072, 0, 2, 196608, 0, 2, 262144, 0, 2, 327680, 0, 2, 1245184, 0, 2, 1179648, 0, 2, 1114112, 0, 2, 1048576, 0, 2, 983040, 0, 2, 917504, 0, 2, 851968, 0, 1, 393216, 0, 2, 458752, 0, 0, 851969, 65536, 1, 917505, 65536, 2, 983041, 65536, 2, 1048577, 65536, 2, 1114113, 65536, 2, 1179649, 65536, 2, 1245185, 65536, 2, 458753, 65536, 0, 393217, 65536, 2, 327681, 65536, 2, 262145, 65536, 2, 196609, 65536, 2, 131073, 65536, 2, 65537, 65536, 2, 1, 65536, 2, 786432, 0, 0, 786433, 65536, 0, 1310720, 0, 2, 1376256, 0, 2, 1441792, 0, 2, 1507328, 0, 2, 1572864, 0, 2, 1638400, 0, 2, 1703936, 0, 2, 1769472, 0, 2, 1835008, 0, 2, 1900544, 0, 2, -65536, 0, 2, -131072, 0, 2, -196608, 0, 2, -262144, 0, 2, -327680, 0, 2, -393216, 0, 2, -458752, 0, 2, -524288, 0, 2, -589824, 0, 2, -655360, 0, 2, -65535, 65536, 2, -131071, 65536, 2, -655359, 65536, 2, -589823, 65536, 2, -524287, 65536, 2, -458751, 65536, 2, -393215, 65536, 2, -327679, 65536, 2, -262143, 65536, 2, -196607, 65536, 2, 1310721, 65536, 2, 1376257, 65536, 2, 1441793, 65536, 2, 1507329, 65536, 2, 1572865, 65536, 2, 1638401, 65536, 2, 1703937, 65536, 2, 1769473, 65536, 2, 1835009, 65536, 2, 1900545, 65536, 2)
+
+[node name="UpperPipe" type="CollisionShape2D" parent="."]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_dma0i")
+
+[node name="LowerPipe" type="CollisionShape2D" parent="."]
+position = Vector2(16, 336.25)
+shape = SubResource("RectangleShape2D_dma0i")
+
+[node name="SafeZone" type="Area2D" parent="." groups=["pipes"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeZone"]
+position = Vector2(16, 160)
+shape = SubResource("RectangleShape2D_6yh7r")
+
+[connection signal="body_entered" from="SafeZone" to="." method="_on_safe_zone_body_entered"]

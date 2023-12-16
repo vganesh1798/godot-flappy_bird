@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn1sn0oawbbgg"]
+
+[ext_resource type="Texture2D" uid="uid://2n3c4tp4oqvt" path="res://grass.png" id="1_52jin"]
+[ext_resource type="PackedScene" uid="uid://bsh1n5pkehace" path="res://bill.tscn" id="2_61ft3"]
+[ext_resource type="PackedScene" uid="uid://bodc6uo5hj1w7" path="res://pipe_spawner.tscn" id="3_ly1bg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hh1ge"]
+texture = ExtResource("1_52jin")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_tqysl"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_hh1ge")
+
+[node name="Main" type="Node2D"]
+
+[node name="PipeSpawner" parent="." instance=ExtResource("3_ly1bg")]
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_tqysl")
+format = 2
+layer_0/tile_data = PackedInt32Array(1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0, 1245216, 0, 0, 1245217, 0, 0, 1245218, 0, 0, 1245219, 0, 0, 1245220, 0, 0, 1245221, 0, 0, 1245222, 0, 0, 1245223, 0, 0)
+
+[node name="Bill" parent="." instance=ExtResource("2_61ft3")]
+position = Vector2(64, 128)
+
+[connection signal="game_over" from="Bill" to="PipeSpawner" method="_on_bill_game_over"]
